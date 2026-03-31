@@ -1501,6 +1501,192 @@ img {
     color: var(--clr-gold);
 }
 
+/* AUDIT MODAL */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay--active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--clr-bg-elevated);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(56, 191, 167, 0.06);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-overlay--active .modal {
+    transform: translateY(0) scale(1);
+}
+
+.modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--clr-text-muted);
+    font-size: 1.75rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition);
+    line-height: 1;
+}
+
+.modal__close:hover {
+    color: var(--clr-white);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.modal__header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.modal__title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--clr-white);
+    margin-bottom: 0.5rem;
+}
+
+.modal__subtitle {
+    color: var(--clr-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.modal__field label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-text-muted);
+}
+
+.modal__field input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--clr-text);
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: all var(--transition);
+}
+
+.modal__field input::placeholder {
+    color: var(--clr-text-dim);
+}
+
+.modal__field input:focus {
+    border-color: var(--clr-gold);
+    box-shadow: 0 0 0 3px rgba(56, 191, 167, 0.1);
+}
+
+.modal__submit {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.modal__reassurance {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--clr-text-dim);
+    font-style: italic;
+}
+
+.modal__success {
+    display: none;
+    text-align: center;
+    padding: var(--space-md) 0;
+}
+
+.modal__success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(56, 191, 167, 0.15);
+    border: 2px solid var(--clr-gold);
+    color: var(--clr-gold);
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+}
+
+.modal__success h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--clr-white);
+    margin-bottom: 0.75rem;
+}
+
+.modal__success p {
+    color: var(--clr-text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Light theme modal overrides */
+[data-theme="light"] .modal {
+    background: var(--clr-bg-card);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .modal__field input {
+    background: var(--clr-bg);
+}
+
+[data-theme="light"] .modal__close:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
 /* SCROLL REVEAL ANIMATIONS */
 .reveal {
     opacity: 0;

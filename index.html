@@ -43,7 +43,7 @@
                 <a href="#services">Services</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#faq">FAQ</a>
-                <a href="#contact" class="nav__cta">Unlock Your Free Audit</a>
+                <a href="#" class="nav__cta" data-open-audit>Unlock Your Free Audit</a>
             </div>
             <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
@@ -68,7 +68,7 @@
                 We help aesthetic clinics and physio practices unlock hidden revenue, capture new patients, and run more efficiently — using AI tools built specifically for the way you work.
             </p>
             <div class="hero__ctas reveal reveal--delay-3">
-                <a href="#contact" class="btn btn--primary btn--magnetic">Unlock Your Free AI Growth Audit</a>
+                <a href="#" class="btn btn--primary btn--magnetic" data-open-audit>Unlock Your Free AI Growth Audit</a>
                 <a href="#how-it-works" class="btn btn--ghost">See How It Works</a>
             </div>
         </div>
@@ -268,7 +268,7 @@
             </div>
         </div>
         <div class="services__cta reveal">
-            <a href="#contact" class="btn btn--primary btn--magnetic">Unlock Your Free AI Growth Audit</a>
+            <a href="#" class="btn btn--primary btn--magnetic" data-open-audit>Unlock Your Free AI Growth Audit</a>
         </div>
     </section>
 
@@ -446,7 +446,7 @@
             <p class="section-eyebrow">Get Started</p>
             <h2 class="final-cta__heading">Ready to Put AI to Work<br>for Your Practice?</h2>
             <p class="final-cta__sub">Don't let another enquiry go cold, another call go unanswered, or another satisfied patient leave without a review.</p>
-            <a href="mailto:terrelburton31@gmail.com?subject=FlowBuildr%20AI%20Growth%20Audit" class="btn btn--primary btn--large btn--magnetic">Unlock Your Free AI Growth Audit</a>
+            <a href="#" class="btn btn--primary btn--large btn--magnetic" data-open-audit>Unlock Your Free AI Growth Audit</a>
             <p class="final-cta__reassurance">No cost. No obligation. Just a clear picture of what's possible.</p>
         </div>
     </section>
@@ -485,6 +485,43 @@
             </div>
         </div>
     </footer>
+
+    <!-- AUDIT MODAL -->
+    <div class="modal-overlay" id="auditModal">
+        <div class="modal">
+            <button class="modal__close" id="modalClose" aria-label="Close modal">&times;</button>
+            <div class="modal__header">
+                <p class="section-eyebrow">Free AI Growth Audit</p>
+                <h3 class="modal__title">Unlock Your Free Audit</h3>
+                <p class="modal__subtitle">Tell us a bit about your practice and we'll show you exactly where AI can make the biggest impact.</p>
+            </div>
+            <form class="modal__form" id="auditForm">
+                <div class="modal__field">
+                    <label for="audit-name">Full Name</label>
+                    <input type="text" id="audit-name" name="name" placeholder="e.g. Sarah Jones" required>
+                </div>
+                <div class="modal__field">
+                    <label for="audit-email">Email Address</label>
+                    <input type="email" id="audit-email" name="email" placeholder="e.g. sarah@clinic.co.uk" required>
+                </div>
+                <div class="modal__field">
+                    <label for="audit-phone">Phone Number</label>
+                    <input type="tel" id="audit-phone" name="phone" placeholder="e.g. 07700 900000" required>
+                </div>
+                <div class="modal__field">
+                    <label for="audit-business">Business Name</label>
+                    <input type="text" id="audit-business" name="business" placeholder="e.g. Glow Aesthetics" required>
+                </div>
+                <button type="submit" class="btn btn--primary btn--large modal__submit">Get My Free Audit</button>
+                <p class="modal__reassurance">No spam. No obligation. We'll be in touch within 24 hours.</p>
+            </form>
+            <div class="modal__success" id="modalSuccess">
+                <div class="modal__success-icon">&#10003;</div>
+                <h3>You're In!</h3>
+                <p>We've received your details and will be in touch within 24 hours to book your free AI growth audit.</p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

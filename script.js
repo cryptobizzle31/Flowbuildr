@@ -304,6 +304,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- AUDIT MODAL ---
+    const auditModal = document.getElementById('auditModal');
+    const modalClose = document.getElementById('modalClose');
+    const auditForm = document.getElementById('auditForm');
+    const modalSuccess = document.getElementById('modalSuccess');
+
+    // Open modal from any element with data-open-audit
+    document.querySelectorAll('[data-open-audit]').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            auditModal.classList.add('modal-overlay--active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close modal
+    function closeModal() {
+        auditModal.classList.remove('modal-overlay--active');
+        document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+
+    auditModal.addEventListener('click', (e) => {
+        if (e.target === auditModal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && auditModal.classList.contains('modal-overlay--active')) {
+            closeModal();
+        }
+    });
+
+    // Form submission
+    auditForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('audit-name').value,
+            email: document.getElementById('audit-email').value,
+            phone: document.getElementById('audit-phone').value,
+            business: document.getElementById('audit-business').value
+        };
+
+        // TODO: Connect to GHL webhook or email service
+        console.log('Audit form submitted:', formData);
+
+        // Show success state
+        auditForm.style.display = 'none';
+        document.querySelector('.modal__header').style.display = 'none';
+        modalSuccess.style.display = 'block';
+
+        // Reset after closing
+        setTimeout(() => {
+            closeModal();
+            setTimeout(() => {
+                auditForm.style.display = '';
+                document.querySelector('.modal__header').style.display = '';
+                modalSuccess.style.display = 'none';
+                auditForm.reset();
+            }, 300);
+        }, 3000);
+    });
+
     // --- MAGNETIC CURSOR EFFECT ON CTA BUTTONS ---
     const magneticBtns = document.querySelectorAll('.btn--magnetic');
 
