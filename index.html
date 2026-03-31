@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Solutions for Aesthetic Clinics & Physio Practices | FlowBuildr</title>
+    <meta name="description" content="Stop leaving money on the table. FlowBuildr helps aesthetic clinics and physio practices grow with AI-powered lead generation, database reactivation, receptionist, and review management.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Prevent flash of wrong theme on load
+        (function() {
+            var t = localStorage.getItem('flowbuildr-theme');
+            if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+        <div class="theme-toggle__track">
+            <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </button>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo">Flow<span>Buildr</span></a>
+            <div class="nav__links" id="navLinks">
+                <a href="#services">Services</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact" class="nav__cta">Unlock Your Free Audit</a>
+            </div>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__bg-grain"></div>
+        <canvas class="hero__flow-canvas" id="flowCanvas"></canvas>
+        <div class="hero__content">
+            <p class="hero__eyebrow reveal">AI-Powered Growth for Clinics & Practices</p>
+            <h1 class="hero__headline reveal reveal--delay-1">
+                More Leads. More Revenue.<br>
+                Less Manual Work.<br>
+                <span class="hero__headline-accent">Powered by AI.</span>
+            </h1>
+            <p class="hero__sub reveal reveal--delay-2">
+                We help aesthetic clinics and physio practices unlock hidden revenue, capture new patients, and run more efficiently — using AI tools built specifically for the way you work.
+            </p>
+            <div class="hero__ctas reveal reveal--delay-3">
+                <a href="#contact" class="btn btn--primary btn--magnetic">Unlock Your Free AI Growth Audit</a>
+                <a href="#how-it-works" class="btn btn--ghost">See How It Works</a>
+            </div>
+        </div>
+        <div class="hero__scroll-indicator reveal reveal--delay-4">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- MARQUEE TICKER -->
+    <div class="marquee">
+        <div class="marquee__track">
+            <span class="marquee__item">AI Database Reactivation</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">AI Lead Generation</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">AI Receptionist</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">AI Review Management</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">Aesthetic Clinics</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">Physio Practices</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">AI Database Reactivation</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">AI Lead Generation</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">AI Receptionist</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">AI Review Management</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">Aesthetic Clinics</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">Physio Practices</span>
+            <span class="marquee__dot"></span>
+        </div>
+    </div>
+
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof">
+        <div class="social-proof__inner reveal">
+            <div class="social-proof__item">
+                <span class="social-proof__number" data-count="24" data-suffix="/7">0</span>
+                <span class="social-proof__label">AI-Powered Support</span>
+            </div>
+            <div class="social-proof__divider"></div>
+            <div class="social-proof__item">
+                <span class="social-proof__number" data-count="4" data-suffix="">0</span>
+                <span class="social-proof__label">Core AI Services</span>
+            </div>
+            <div class="social-proof__divider"></div>
+            <div class="social-proof__item">
+                <span class="social-proof__number" data-count="7" data-prefix="<" data-suffix="">0</span>
+                <span class="social-proof__label">Days to Launch</span>
+            </div>
+            <div class="social-proof__divider"></div>
+            <div class="social-proof__item">
+                <span class="social-proof__number" data-count="0" data-suffix="">0</span>
+                <span class="social-proof__label">Long-Term Contracts</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAIN SECTION -->
+    <section class="pain" id="problem">
+        <div class="section-divider section-divider--top"></div>
+        <div class="pain__inner">
+            <div class="pain__left reveal">
+                <p class="section-eyebrow">The Problem</p>
+                <h2 class="section-heading">Sound familiar?</h2>
+                <p class="pain__intro">
+                    You're running a clinic or practice, wearing every hat, and still watching potential patients fall through the cracks.
+                </p>
+            </div>
+            <div class="pain__right">
+                <div class="pain__card reveal reveal--delay-1">
+                    <div class="pain__card-icon">01</div>
+                    <p>Enquiries come in but don't get followed up on fast enough</p>
+                </div>
+                <div class="pain__card reveal reveal--delay-2">
+                    <div class="pain__card-icon">02</div>
+                    <p>Past patients have gone quiet — and you don't know why</p>
+                </div>
+                <div class="pain__card reveal reveal--delay-3">
+                    <div class="pain__card-icon">03</div>
+                    <p>Your phone rings at the worst times, and missed calls mean missed bookings</p>
+                </div>
+                <div class="pain__card reveal reveal--delay-4">
+                    <div class="pain__card-icon">04</div>
+                    <p>You're delivering great results but getting no reviews to show for it</p>
+                </div>
+            </div>
+        </div>
+        <p class="pain__closing reveal">You don't need to work harder. <strong>You need smarter systems.</strong></p>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="section-divider section-divider--top"></div>
+        <div class="services__header reveal">
+            <p class="section-eyebrow">What We Do</p>
+            <h2 class="section-heading">Four Ways We Help You Grow</h2>
+        </div>
+        <div class="services__grid">
+            <div class="service-card reveal reveal--delay-1">
+                <div class="service-card__glow"></div>
+                <div class="service-card__number">01</div>
+                <div class="service-card__icon">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="14" width="40" height="8" rx="4" stroke="currentColor" stroke-width="1.8"/>
+                        <rect x="8" y="26" width="40" height="8" rx="4" stroke="currentColor" stroke-width="1.8"/>
+                        <rect x="8" y="38" width="40" height="8" rx="4" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
+                        <path d="M38 34l6 6m0 0l6-6m-6 6V28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="16" cy="18" r="2" fill="currentColor"/>
+                        <circle cx="16" cy="30" r="2" fill="currentColor"/>
+                        <circle cx="16" cy="42" r="2" fill="currentColor" opacity="0.4"/>
+                    </svg>
+                </div>
+                <h3>AI Database Reactivation</h3>
+                <p class="service-card__hook">There's money sitting in your existing contacts — we help you collect it.</p>
+                <ul>
+                    <li>Re-engage dormant enquiries and past patients automatically</li>
+                    <li>Personalised outreach that doesn't feel like a mass blast</li>
+                    <li>Proven to generate bookings within days of launch</li>
+                </ul>
+                <a href="#contact" class="service-card__link">Get started &rarr;</a>
+            </div>
+            <div class="service-card reveal reveal--delay-2">
+                <div class="service-card__glow"></div>
+                <div class="service-card__number">02</div>
+                <div class="service-card__icon">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M28 6v6M28 44v6M6 28h6M44 28h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M12.4 12.4l4.2 4.2M39.4 39.4l4.2 4.2M12.4 43.6l4.2-4.2M39.4 16.6l4.2-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+                        <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="1.8" stroke-dasharray="4 3"/>
+                        <circle cx="28" cy="28" r="11" stroke="currentColor" stroke-width="1.8"/>
+                        <circle cx="28" cy="28" r="4.5" fill="currentColor"/>
+                        <path d="M28 28l12-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3>AI Lead Generation</h3>
+                <p class="service-card__hook">A steady pipeline of qualified leads — on autopilot.</p>
+                <ul>
+                    <li>24/7 lead capture across web, social, and search</li>
+                    <li>AI qualification so you only speak to serious, ready-to-book prospects</li>
+                    <li>Seamless follow-up sequences that convert interest into confirmed appointments</li>
+                </ul>
+                <a href="#contact" class="service-card__link">Get started &rarr;</a>
+            </div>
+            <div class="service-card reveal reveal--delay-3">
+                <div class="service-card__glow"></div>
+                <div class="service-card__number">03</div>
+                <div class="service-card__icon">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="14" y="4" width="28" height="48" rx="6" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M22 4v3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V4" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="28" cy="24" r="6" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M24 23l2.5 2.5L32 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 36h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M22 40h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+                        <path d="M6 20c-2 3-2 7 0 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M50 20c2 3 2 7 0 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M10 16c-3 5-3 11 0 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                        <path d="M46 16c3 5 3 11 0 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+                    </svg>
+                </div>
+                <h3>AI Receptionist</h3>
+                <p class="service-card__hook">Never miss a call. Never lose a lead. Even at 2am.</p>
+                <ul>
+                    <li>Always-on, human-sounding voice AI</li>
+                    <li>Handles calls, FAQs, and appointment booking automatically</li>
+                    <li>Full conversation logs and summaries delivered to you daily</li>
+                </ul>
+                <a href="#contact" class="service-card__link">Get started &rarr;</a>
+            </div>
+            <div class="service-card reveal reveal--delay-4">
+                <div class="service-card__glow"></div>
+                <div class="service-card__number">04</div>
+                <div class="service-card__icon">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M28 4l7.5 15.2L52 21.6l-12 11.7 2.8 16.5L28 41.5l-14.8 8.3 2.8-16.5-12-11.7 16.5-2.4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <path d="M28 12l4.5 9.1 10 1.5-7.2 7 1.7 10L28 34.8" fill="currentColor" opacity="0.15"/>
+                        <path d="M20 26l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="46" cy="10" r="5" stroke="currentColor" stroke-width="1.5"/>
+                        <text x="46" y="13" text-anchor="middle" fill="currentColor" font-size="8" font-weight="700">5</text>
+                    </svg>
+                </div>
+                <h3>AI Review Management</h3>
+                <p class="service-card__hook">More 5-star reviews. Less chasing. Better reputation.</p>
+                <ul>
+                    <li>Automated review requests sent at the perfect moment</li>
+                    <li>Increases reviews on Google, Facebook, and more</li>
+                    <li>Smart response templates for both positive and negative reviews</li>
+                </ul>
+                <a href="#contact" class="service-card__link">Get started &rarr;</a>
+            </div>
+        </div>
+        <div class="services__cta reveal">
+            <a href="#contact" class="btn btn--primary btn--magnetic">Unlock Your Free AI Growth Audit</a>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="how-it-works__inner">
+            <div class="how-it-works__header reveal">
+                <p class="section-eyebrow">The Process</p>
+                <h2 class="section-heading">Up and Running in Days, Not Months</h2>
+            </div>
+            <div class="how-it-works__steps">
+                <div class="how-it-works__line"></div>
+                <div class="step reveal reveal--delay-1">
+                    <div class="step__number"><span>01</span></div>
+                    <div class="step__content">
+                        <h3>Free AI Growth Audit</h3>
+                        <p>We take a look at your current setup, identify gaps, and show you exactly where AI can make the biggest impact on your practice.</p>
+                    </div>
+                </div>
+                <div class="step reveal reveal--delay-2">
+                    <div class="step__number"><span>02</span></div>
+                    <div class="step__content">
+                        <h3>Custom Build & Integration</h3>
+                        <p>We build and configure your AI tools to fit your clinic — no tech knowledge required from you. Everything is tailored to your workflow.</p>
+                    </div>
+                </div>
+                <div class="step reveal reveal--delay-3">
+                    <div class="step__number"><span>03</span></div>
+                    <div class="step__content">
+                        <h3>Launch & See Results</h3>
+                        <p>Your systems go live. Leads come in, patients re-engage, calls get answered, and reviews start rolling in — all on autopilot.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS / STATS -->
+    <section class="results">
+        <div class="section-divider section-divider--top"></div>
+        <div class="results__inner">
+            <div class="results__header reveal">
+                <p class="section-eyebrow">The Impact</p>
+                <h2 class="section-heading">What AI Does for Your Practice</h2>
+            </div>
+            <div class="results__grid">
+                <div class="result-card reveal reveal--delay-1">
+                    <div class="result-card__icon">
+                        <svg viewBox="0 0 32 32" fill="none"><path d="M4 28l7-7m0 0l5-12 5 12m-10 0h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>More Bookings</h3>
+                    <p>Reactivation campaigns bring past patients back through your door within days of launch</p>
+                </div>
+                <div class="result-card reveal reveal--delay-2">
+                    <div class="result-card__icon">
+                        <svg viewBox="0 0 32 32" fill="none"><path d="M6 26V16m6 10V12m6 14V8m6 18V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Fewer Missed Calls</h3>
+                    <p>AI receptionist answers every call 24/7 — no more missed opportunities outside hours</p>
+                </div>
+                <div class="result-card reveal reveal--delay-3">
+                    <div class="result-card__icon">
+                        <svg viewBox="0 0 32 32" fill="none"><path d="M16 4l3.5 7.1 7.8 1.1-5.65 5.5 1.33 7.8L16 21.9l-6.98 3.6 1.33-7.8L4.7 12.2l7.8-1.1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>More 5-Star Reviews</h3>
+                    <p>Automated prompts at the perfect moment dramatically increase your review volume</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="testimonials__inner">
+            <div class="testimonials__header reveal">
+                <p class="section-eyebrow">What People Say</p>
+                <h2 class="section-heading">Results That Speak for Themselves</h2>
+            </div>
+            <div class="testimonials__grid">
+                <div class="testimonial-card reveal reveal--delay-1">
+                    <div class="testimonial-card__quote">&ldquo;</div>
+                    <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <blockquote>
+                        "Before FlowBuildr, we were missing calls every day and had no system to follow up on old leads. Within the first month, the AI receptionist alone transformed how we handle patient enquiries."
+                    </blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar"></div>
+                        <div>
+                            <p class="testimonial-card__name">Coming Soon</p>
+                            <p class="testimonial-card__role">Aesthetic Clinic Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal--delay-2">
+                    <div class="testimonial-card__quote">&ldquo;</div>
+                    <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <blockquote>
+                        "The database reactivation campaign brought back patients we hadn't heard from in over a year. It practically paid for itself in the first week."
+                    </blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar"></div>
+                        <div>
+                            <p class="testimonial-card__name">Coming Soon</p>
+                            <p class="testimonial-card__role">Physio Practice Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="section-divider section-divider--top"></div>
+        <div class="faq__inner">
+            <div class="faq__header reveal">
+                <p class="section-eyebrow">Questions</p>
+                <h2 class="section-heading">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq__list">
+                <div class="faq__item reveal reveal--delay-1">
+                    <button class="faq__question" aria-expanded="false">
+                        <span>Do I need to be technical to use these tools?</span>
+                        <span class="faq__icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <p>No. We handle everything — setup, integration, and ongoing management. You see the results without touching the tech.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal reveal--delay-2">
+                    <button class="faq__question" aria-expanded="false">
+                        <span>How quickly will I see results?</span>
+                        <span class="faq__icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <p>Most clients see measurable outcomes within the first 2–4 weeks of launch, especially from database reactivation.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal reveal--delay-3">
+                    <button class="faq__question" aria-expanded="false">
+                        <span>Will this work for my clinic or practice?</span>
+                        <span class="faq__icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <p>Our AI solutions are built specifically for aesthetic clinics and physio practices. We understand your booking-driven model, patient retention challenges, and reputation needs. During your free audit, we'll confirm it's the right fit before you commit to anything.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal reveal--delay-4">
+                    <button class="faq__question" aria-expanded="false">
+                        <span>What does it cost?</span>
+                        <span class="faq__icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <p>Pricing depends on the services you need. Book your free audit and we'll walk you through options that make sense for your practice size and goals.</p>
+                    </div>
+                </div>
+                <div class="faq__item reveal reveal--delay-5">
+                    <button class="faq__question" aria-expanded="false">
+                        <span>Is there a long-term contract?</span>
+                        <span class="faq__icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <p>We offer flexible options. Our goal is to earn your continued business by delivering real results — not to lock you in.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="contact">
+        <div class="final-cta__bg-grain"></div>
+        <div class="final-cta__orb"></div>
+        <div class="final-cta__inner reveal">
+            <p class="section-eyebrow">Get Started</p>
+            <h2 class="final-cta__heading">Ready to Put AI to Work<br>for Your Practice?</h2>
+            <p class="final-cta__sub">Don't let another enquiry go cold, another call go unanswered, or another satisfied patient leave without a review.</p>
+            <a href="mailto:terrelburton31@gmail.com?subject=FlowBuildr%20AI%20Growth%20Audit" class="btn btn--primary btn--large btn--magnetic">Unlock Your Free AI Growth Audit</a>
+            <p class="final-cta__reassurance">No cost. No obligation. Just a clear picture of what's possible.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <a href="#" class="nav__logo">Flow<span>Buildr</span></a>
+                    <p>FlowBuildr helps aesthetic clinics and physio practices compete and grow using AI-powered tools for lead generation, patient reactivation, reputation management, and more.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Navigation</h4>
+                        <a href="#services">Services</a>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer__col">
+                        <h4>Services</h4>
+                        <a href="#services">Database Reactivation</a>
+                        <a href="#services">Lead Generation</a>
+                        <a href="#services">AI Receptionist</a>
+                        <a href="#services">Review Management</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 FlowBuildr. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
