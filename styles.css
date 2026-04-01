@@ -1252,17 +1252,25 @@ img {
 .testimonial-card__avatar {
     width: 44px;
     height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     border-radius: 50%;
     background: var(--clr-surface);
     border: 2px solid var(--clr-border);
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
+    position: relative;
+}
+
+.testimonial-card__avatar span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--clr-teal);
-    letter-spacing: 0.02em;
+    line-height: 1;
+    letter-spacing: 0;
 }
 
 .testimonial-card__name {
