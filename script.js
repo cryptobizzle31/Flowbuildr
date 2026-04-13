@@ -368,6 +368,109 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     });
 
+    // --- PERFORMANCE BENCHMARK CARDS (SERVICES) ---
+    const perfCards = document.querySelectorAll('[data-perf-card]');
+    if (perfCards.length) {
+        const perfObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                const card = entry.target;
+                if (card.dataset.animated) return;
+                card.dataset.animated = 'true';
+
+                // Animate the main number
+                const numberEl = card.querySelector('.perf-card__number');
+                if (numberEl) {
+                    const target = parseFloat(numberEl.dataset.target);
+                    const suffix = numberEl.dataset.suffix || '';
+                    const decimals = parseInt(numberEl.dataset.decimals || '0');
+                    animateNumber(numberEl, target, suffix, decimals);
+                }
+
+                // Animate the bar fill
+                const barFill = card.querySelector('.perf-card__bar-fill');
+                if (barFill) {
+                    const width = barFill.dataset.width;
+                    setTimeout(() => {
+                        barFill.style.width = width + '%';
+                    }, 300);
+                }
+
+                // Animate the bar value label
+                const barValue = card.querySelector('.perf-card__bar-value');
+                if (barValue) {
+                    const barTarget = parseInt(barValue.dataset.target);
+                    animateNumber(barValue, barTarget, '%', 0, 300);
+                }
+
+                perfObserver.unobserve(card);
+            });
+        }, { threshold: 0.3 });
+
+        perfCards.forEach(card => perfObserver.observe(card));
+
+        function animateNumber(el, target, suffix, decimals, delay) {
+            const duration = 1200;
+            const startTime = performance.now() + (delay || 0);
+
+            function update(now) {
+                const elapsed = now - startTime;
+                if (elapsed < 0) {
+                    requestAnimationFrame(update);
+                    return;
+                }
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = eased * target;
+                el.textContent = current.toFixed(decimals) + suffix;
+                if (progress < 1) requestAnimationFrame(update);
+            }
+
+            requestAnimationFrame(update);
+        }
+    }
+
+    // --- SERVICE MODALS ---
+    document.querySelectorAll('.perf-card__read-more').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const modalId = btn.dataset.modal;
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('service-modal--open');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    document.querySelectorAll('.service-modal').forEach(modal => {
+        const overlay = modal.querySelector('.service-modal__overlay');
+        const closeBtn = modal.querySelector('.service-modal__close');
+
+        function closeModal() {
+            modal.classList.remove('service-modal--open');
+            document.body.style.overflow = '';
+        }
+
+        overlay.addEventListener('click', closeModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const openModal = document.querySelector('.service-modal--open');
+            if (openModal) {
+                openModal.classList.remove('service-modal--open');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+
     // --- MAGNETIC CURSOR EFFECT ON CTA BUTTONS ---
     const magneticBtns = document.querySelectorAll('.btn--magnetic');
 
