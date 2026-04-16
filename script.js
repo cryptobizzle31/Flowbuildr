@@ -348,8 +348,17 @@ document.addEventListener('DOMContentLoaded', () => {
             business: document.getElementById('audit-business').value
         };
 
-        // TODO: Connect to GHL webhook or email service
-        console.log('Audit form submitted:', formData);
+        // Send to GoHighLevel
+        fetch('https://services.leadconnectorhq.com/hooks/X7fJLbGttbin1BYvD1oX/webhook-trigger/4687c9dd-0762-46df-8f8f-1f1d34bded4c', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                full_name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                business_name: formData.business
+            })
+        }).catch(() => {}); // fire and forget — don't block the success state
 
         // Show success state
         auditForm.style.display = 'none';
