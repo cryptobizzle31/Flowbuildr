@@ -597,9 +597,15 @@
                 <p class="modal__subtitle">Tell us a bit about your practice and we'll show you exactly where AI can make the biggest impact.</p>
             </div>
             <form class="modal__form" id="auditForm">
-                <div class="modal__field">
-                    <label for="audit-name">Full Name</label>
-                    <input type="text" id="audit-name" name="name" placeholder="e.g. Sarah Jones" required>
+                <div class="modal__field-row">
+                    <div class="modal__field">
+                        <label for="audit-firstname">First Name</label>
+                        <input type="text" id="audit-firstname" name="firstname" placeholder="e.g. Sarah" required>
+                    </div>
+                    <div class="modal__field">
+                        <label for="audit-surname">Surname</label>
+                        <input type="text" id="audit-surname" name="surname" placeholder="e.g. Jones" required>
+                    </div>
                 </div>
                 <div class="modal__field">
                     <label for="audit-email">Email Address</label>

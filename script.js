@@ -342,7 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const formData = {
-            name: document.getElementById('audit-name').value,
+            firstName: document.getElementById('audit-firstname').value,
+            surname: document.getElementById('audit-surname').value,
             email: document.getElementById('audit-email').value,
             phone: document.getElementById('audit-phone').value,
             business: document.getElementById('audit-business').value
@@ -353,7 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                full_name: formData.name,
+                first_name: formData.firstName,
+                last_name: formData.surname,
                 email: formData.email,
                 phone: formData.phone,
                 business_name: formData.business

@@ -1938,6 +1938,18 @@ img {
     gap: 1.25rem;
 }
 
+.modal__field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 480px) {
+    .modal__field-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .modal__field {
     display: flex;
     flex-direction: column;
