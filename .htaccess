@@ -1,0 +1,21 @@
+# FlowBuildr: Hostinger (LiteSpeed/Apache)
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# Build sources and tooling are not part of the public site
+RedirectMatch 404 ^/(_src(/.*)?|build\.py|\.git(/.*)?)$
+
+<IfModule mod_mime.c>
+  AddType text/plain .txt
+  AddCharset utf-8 .txt .html .css .js .xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
