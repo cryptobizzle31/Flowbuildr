@@ -1076,7 +1076,7 @@ try{if(localStorage.getItem('fb_consent')==='granted')gtag('consent','update',{a
     <div class="wrap">
       <span class="eyebrow">Privacy</span>
       <h1 class="h1" style="max-width:18ch">How we look after your details.</h1>
-      <p class="lede">What we collect, why, who else sees it, and what you can ask us to do with it. Last updated 13 October 2026.</p>
+      <p class="lede">What we collect, why, who else sees it, and what you can ask us to do with it. Last updated 14 October 2026.</p>
     </div>
   </section>
 
@@ -1102,8 +1102,11 @@ try{if(localStorage.getItem('fb_consent')==='granted')gtag('consent','update',{a
       <h2 class="h2">How long we keep it.</h2>
       <p>Enquiries that go no further: up to 12 months after we last spoke, then deleted. Client records: six years after the work ends, as the law requires for our accounts. A request not to be contacted: for as long as we need it to honour it.</p>
 
-      <h2 class="h2">Cookies.</h2>
-      <p>This site sets no cookies and uses no analytics or tracking. Our web host may keep standard server logs, such as IP addresses, for security.</p>
+      <h2 class="h2">Cookies and analytics.</h2>
+      <p>With your permission, we use Google Analytics 4 to see how people find and use this site: which pages they visit, where they came from, roughly how long they stay, and whether they book a call. It is provided by Google Ireland Limited, with Google LLC in the United States as its parent and sub-processor. Our lawful basis is your consent.</p>
+      <p>Nothing loads until you click Accept on the cookie banner. Rejecting, or ignoring the banner, means no analytics cookies are set. If you accept, Google sets two cookies: <code>_ga</code>, which tells visitors apart, and <code>_ga_GZK0603EW1</code>, which keeps track of your visit. Under Google&rsquo;s defaults both last up to two years. Google Analytics data is kept for up to 14 months.</p>
+      <p>We store your Accept or Reject choice in your browser&rsquo;s local storage so we don&rsquo;t keep asking. This is not sent to us. You can change your mind at any time: <button type="button" class="link-btn" data-cookie-reset style="background:none;border:0;padding:0;font:inherit;color:var(--accent-text);text-decoration:underline;cursor:pointer">change your cookie choice</button>, or clear this site&rsquo;s data in your browser, which removes both the choice and the cookies.</p>
+      <p>Google may process analytics data in the United States. Those transfers are covered by the UK Extension to the EU&ndash;US Data Privacy Framework and Google&rsquo;s standard contractual clauses. Our web host may also keep standard server logs, such as IP addresses, for security.</p>
 
       <h2 class="h2">Your rights.</h2>
       <p>You can ask us for a copy of your data, to correct it, to delete it, to stop or limit how we use it, or to send it somewhere else. You can object to direct marketing at any time, and we will stop. Email <a href="mailto:admin@flowbuildr.co.uk">admin@flowbuildr.co.uk</a> and we&rsquo;ll reply within one month.</p>
@@ -1483,6 +1486,12 @@ try{if(localStorage.getItem('fb_consent')==='granted')gtag('consent','update',{a
     try{localStorage.setItem('fb_consent',v);}catch(err){}
     if(v==='granted')gtag('consent','update',{analytics_storage:'granted'});
     cc.hidden=true;
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('[data-cookie-reset]'))return;
+    try{localStorage.removeItem('fb_consent');}catch(err){}
+    gtag('consent','update',{analytics_storage:'denied'});
+    cc.hidden=false;cc.querySelector('.cc-no').focus();
   });
 })();
 </script>
