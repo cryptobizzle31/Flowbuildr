@@ -1,0 +1,32 @@
+# FlowBuildr
+
+> FlowBuildr Ltd is a Manchester company, run by two partners, that finds the job AI should do for an owner-run business, builds it in the business's own format and keeps it running: a fixed-price audit, then builds and monthly support. "AI that works while you work."
+
+- Company: FlowBuildr Ltd, registered in England and Wales, company number 17203503
+- Registered office: First Floor, Swan Buildings, 20 Swan Street, Manchester M4 5JW (registered office, not a place to visit)
+- Serves: Manchester and the rest of the UK
+- Who it is for: owner-run businesses where the same jobs come round every week, starting with trades and home services, and also clinics, shops and other service businesses
+- People: Terrel Burton (finds the job worth handing to AI and builds it with Claude, n8n and the tools you already use) and Rheece Hemmings (makes sure what we build brings in work)
+- Contact: admin@flowbuildr.co.uk, or book a free 15-minute call at https://flowbuildr.co.uk/
+
+## How it works
+
+- [The audit](https://flowbuildr.co.uk/audit/): one session at a fixed price. We go through your week job by job, find the three uses that would save the most time, and give you a written plan with a fixed price for the first build. The plan is yours to keep, and the audit fee comes off the first build.
+- The build: we build it from one of our modules, set it up on your templates and prices, and test it on your real jobs. You approve it before it goes live.
+- We run it: fixes and one small change a month for a monthly fee per live build, a short monthly report, and a person to call. No lock-in.
+
+## What we build
+
+- [Services](https://flowbuildr.co.uk/services/): paperwork drafted for you (quotes, proposals, reports and letters in your own template), follow-ups that happen on time, enquiries answered and sorted, your own AI workspace (Claude set up with your documents, templates and tone, plus training), and a website that brings in work.
+
+## Common questions
+
+- [FAQ](https://flowbuildr.co.uk/faq/): Do I need to be technical? No. We set everything up, connect it to what you already use, and look after it.
+- Do I need a ChatGPT or Claude subscription? No. You use the builds through WhatsApp, email or a simple web page, and we look after the accounts behind them.
+- What does it cost? Three parts, each agreed in writing first: a fixed price for the audit, a fixed price for each build, and a monthly fee per live build. Prices follow the free call.
+- Am I tied into a long contract? No. The monthly fee is exactly that.
+
+## More
+
+- [About](https://flowbuildr.co.uk/about/)
+- [Privacy notice](https://flowbuildr.co.uk/privacy/)

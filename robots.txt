@@ -1,0 +1,21 @@
+# FlowBuildr: everyone is welcome to crawl, including AI answer engines.
+User-agent: *
+Allow: /
+Disallow: /_src/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://flowbuildr.co.uk/sitemap.xml
