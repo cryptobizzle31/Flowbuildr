@@ -177,23 +177,33 @@
 
   /* ---------- Scroll-driven background ---------- */
   (function(){
-    var cv=document.getElementById('flow'),ctx=cv.getContext('2d');if(!ctx)return;
-    var W=0,H=0,DPR=1,GAP=26,t=0,last=performance.now(),lastY=window.scrollY,energy=0,running=false,hidden=false,lastDraw=0;
+    var layer=document.querySelector('.bg-layer'),cv=document.getElementById('flow'),ctx=cv&&cv.getContext('2d');if(!layer||!ctx)return;
+    var TOUCH=window.matchMedia&&window.matchMedia('(pointer: coarse)').matches;
+    var W=0,H=0,DPR=0,GAP=26,t=0,last=performance.now(),lastY=scrollTop(),sampleY=lastY,sampleT=last,speed=0,energy=0,still=0,running=false,hidden=false,lastDraw=0,rsz=0;
     var LEVELS=7,paths=[];
     var de=document.documentElement;
     function light(){return de.getAttribute('data-theme')==='light';}
-    function size(){DPR=Math.min(2,window.devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);GAP=W<640?22:26;}
+    function scrollTop(){var y=window.scrollY;return y>0?y:0;} /* iOS rubber-banding reports a negative scroll */
+    /* Size from the layer (100lvh), not innerHeight. A phone's address bar sliding away fires resize and changes
+       innerHeight but not the layer, and setting canvas.width blanks the canvas: so only do it when the size really changed. */
+    function size(){
+      var w=layer.clientWidth||innerWidth,h=layer.clientHeight||innerHeight,d=Math.min(2,window.devicePixelRatio||1);
+      if(w===W&&h===H&&d===DPR)return false;
+      W=w;H=h;DPR=d;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);ctx.setTransform(DPR,0,0,DPR,0,0);GAP=W<640?22:26;return true;
+    }
     function draw(){
-      var y=window.scrollY,L=light();
+      var y=scrollTop(),L=light();
       var base=L?[38,52,75]:[232,235,235],hi=L?[0,128,106]:[59,191,167];
       var baseA=L?.09:.075, hiA=L?(.28+.16*energy):(.32+.22*energy);
-      var par=y*0.35, off=par%GAP;
+      var par=y*0.35, n0=Math.floor(par/GAP), off=par-n0*GAP;
       for(var k=0;k<LEVELS;k++)paths[k]=new Path2D();
       var cols=Math.ceil(W/GAP)+1,rows=Math.ceil(H/GAP)+2;
       for(var r=0;r<rows;r++){
-        var sy=r*GAP-off, wy=sy+par;
+        /* Row n0+r of the page. The stagger follows the page row: following the screen row made the whole lattice
+           jump half a cell sideways every time scrolling carried it on by one row. */
+        var n=n0+r, sy=r*GAP-off, wy=n*GAP, sh=n&1?GAP/2:0;
         for(var c=0;c<cols;c++){
-          var sx=c*GAP+(r%2?GAP/2:0)-GAP/2;
+          var sx=c*GAP+sh-GAP/2;
           var w=Math.sin(sx*.0055+wy*.0042-y*.0016-t*.18)+.65*Math.sin(sx*.0102-wy*.0068+y*.0011+t*.11);
           var b=(w-.55)/1.05;b=b<0?0:b>1?1:b;b=b*b*(3-2*b);
           var k=Math.min(LEVELS-1,Math.floor(b*LEVELS));
@@ -209,19 +219,31 @@
     }
     function frame(now){
       if(hidden){running=false;return;}
-      var dt=Math.min(64,now-last);last=now;
-      var y=window.scrollY,v=Math.abs(y-lastY);lastY=y;
-      energy+=(Math.min(1,v/28)-energy)*(v>0?.18:.04);
+      var dt=Math.max(0,Math.min(64,now-last));last=now;
+      var y=scrollTop();
+      /* Scroll speed over 32ms or more, so phones that report the position unevenly don't make the ridges flicker */
+      if(now-sampleT>=32){speed=Math.abs(y-sampleY)/(now-sampleT);sampleY=y;sampleT=now;}
+      var moved=y!==lastY;
+      if(moved){lastY=y;still=0;}else still+=dt;
+      var target=Math.min(1,speed*16.7/28);
+      energy+=(target-energy)*(1-Math.exp(-dt/(target>energy?85:400)));
       t+=dt/1000*(0.35+energy*1.6);
-      if(energy>.02||now-lastDraw>42){draw();lastDraw=now;}
+      var calm=energy<=.02,rest=TOUCH&&calm&&still>600;
+      if(rest||(calm&&!moved?now-lastDraw>42:now-lastDraw>10)){draw();lastDraw=now;} /* every frame while scrolling, slower drift at rest */
+      if(rest){running=false;return;} /* touch screens: stop when scrolling stops, the next scroll restarts it */
       requestAnimationFrame(frame);
     }
-    function start(){if(!running&&!hidden){running=true;last=performance.now();requestAnimationFrame(frame);}}
+    function start(){
+      if(running||hidden)return;
+      running=true;last=performance.now();sampleT=last;sampleY=lastY=scrollTop();still=0;requestAnimationFrame(frame);
+    }
     size();draw();
-    window.addEventListener('resize',function(){size();draw();});
+    window.addEventListener('resize',function(){if(rsz)return;rsz=requestAnimationFrame(function(){rsz=0;if(size())draw();});});
     new MutationObserver(function(){draw();}).observe(de,{attributes:true,attributeFilter:['data-theme']});
     if(REDUCED)return;
     document.addEventListener('visibilitychange',function(){hidden=document.hidden;if(!hidden)start();});
+    window.addEventListener('scroll',start,{passive:true});
+    window.addEventListener('pageshow',function(e){if(e.persisted){size();draw();start();}});
     start();
   })();
 
