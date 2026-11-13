@@ -3,8 +3,9 @@ Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
-# Build sources and tooling are not part of the public site
-RedirectMatch 404 ^/(_src(/.*)?|build\.py|\.git(/.*)?)$
+# Build sources, tooling, and handler docs are not part of the public site.
+# Also refuse a config file if one is ever placed in the web root by mistake.
+RedirectMatch 404 ^/(_src(/.*)?|docs(/.*)?|build\.py|attio-config\.php|attio-config\.example\.php|\.git(/.*)?)$
 
 <IfModule mod_mime.c>
   AddType text/plain .txt
