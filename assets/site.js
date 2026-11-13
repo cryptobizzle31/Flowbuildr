@@ -294,11 +294,12 @@
     form.querySelectorAll('.input[required]').forEach(function(i){if(!check(i)&&!first)first=i;});
     if(first){first.focus();return;}
     var f=form.elements;
-    /* GoHighLevel inbound webhook, the same one and field names the April site used */
-    fetch('https://services.leadconnectorhq.com/hooks/X7fJLbGttbin1BYvD1oX/webhook-trigger/4687c9dd-0762-46df-8f8f-1f1d34bded4c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    /* Attio enquiry handler — replaces the GoHighLevel webhook */
+    fetch('/enquiry.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       first_name:f.first.value.trim(),last_name:f.last.value.trim(),email:f.email.value.trim(),
       phone:f.phone.value.trim(),business_name:f.business.value.trim(),message:f.week.value.trim(),
-      source:'Website: book a call'
+      source:'Website: book a call',
+      company_website:f.company_website?f.company_website.value.trim():''
     })}).then(function(r){if(r.ok&&window.gtag)gtag('event','generate_lead',{form_id:'book-form'});}).catch(function(err){console.error('Booking request failed',err);});
     wrapF.hidden=true;sent.hidden=false;form.reset();
   });
